@@ -1,3 +1,108 @@
+resource "kubernetes_deployment" "mckingapiproducao_deployment" {
+  metadata {
+    name = var.deployment_name
+  }
+
+  spec {
+    replicas = var.replicas
+
+    selector {
+      match_labels = {
+        app = var.pod_name
+      }
+    }
+
+    template {
+      metadata {
+        labels = {
+          app = var.pod_name
+        }
+      }
+
+      spec {
+        container {
+          name              = "mckingapiproducao-container"
+          image             = "ghcr.io/renaneustaquio/mckingapiproducao:latest"
+          image_pull_policy = "Always"
+
+          port {
+            container_port = var.container_port
+          }
+
+          env {
+            name  = "ASPNETCORE_ENVIRONMENT"
+            value = "Production"
+          }        
+
+          resources {
+            limits = {
+              memory = var.memory_limit
+              cpu    = var.cpu_limit
+            }
+            requests = {
+              memory = var.memory_request
+              cpu    = var.cpu_request
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+resource "kubernetes_deployment" "mckingworkerproducao_deployment" {
+  metadata {
+    name = var.deployment_name
+  }
+
+  spec {
+    replicas = var.replicas
+
+    selector {
+      match_labels = {
+        app = var.pod_name
+      }
+    }
+
+    template {
+      metadata {
+        labels = {
+          app = var.pod_name
+        }
+      }
+
+      spec {
+        container {
+          name              = "mckingworkerproducao-container"
+          image             = "ghcr.io/renaneustaquio/mckingworkerproducao:latest"
+          image_pull_policy = "Always"
+
+          port {
+            container_port = var.container_port
+          }
+
+          env {
+            name  = "ASPNETCORE_ENVIRONMENT"
+            value = "Production"
+          }
+
+          resources {
+            limits = {
+              memory = var.memory_limit
+              cpu    = var.cpu_limit
+            }
+            requests = {
+              memory = var.memory_request
+              cpu    = var.cpu_request
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 resource "kubernetes_deployment" "mckingapi_deployment" {
   metadata {
     name = var.deployment_name

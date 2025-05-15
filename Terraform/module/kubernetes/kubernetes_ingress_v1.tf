@@ -1,22 +1,76 @@
-resource "kubernetes_ingress_v1" "mckingapi_ingress" {
+resource "kubernetes_ingress_v1" "mckingapiproducao_ingress" {
   metadata {
-    name = "mckingapi-ingress"
+    name = "mckingapiproducao-ingress"
     annotations = {
-      "kubernetes.io/ingress.class"            = "alb"
-      "alb.ingress.kubernetes.io/scheme"       = "internet-facing"
-      "alb.ingress.kubernetes.io/target-type"  = "ip"
-      "alb.ingress.kubernetes.io/listen-ports" = "[{\"HTTP\": 80}]"
+      "nginx.ingress.kubernetes.io/rewrite-target" = "/"
     }
   }
+
   spec {
     rule {
       http {
         path {
-          path      = "/"
+          path     = "/mckingapiproducao"
           path_type = "Prefix"
           backend {
             service {
-              name = kubernetes_service.mckingapi_service.metadata[0].name
+              name = "mckingapiproducao-service"
+              port {
+                number = 80
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+resource "kubernetes_ingress_v1" "mckingworkerproducao_ingress" {
+  metadata {
+    name = "mckingworkerproducao-ingress"
+    annotations = {
+      "nginx.ingress.kubernetes.io/rewrite-target" = "/"
+    }
+  }
+
+  spec {
+    rule {
+      http {
+        path {
+          path     = "/mckingworkerproducao"
+          path_type = "Prefix"
+          backend {
+            service {
+              name = "mckingworkerproducao-service"
+              port {
+                number = 80
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+resource "kubernetes_ingress_v1" "mckingapi_ingress" {
+  metadata {
+    name = "mckingapi-ingress"
+    annotations = {
+      "nginx.ingress.kubernetes.io/rewrite-target" = "/"
+    }
+  }
+
+  spec {
+    rule {
+      http {
+        path {
+          path     = "/mckingapi"
+          path_type = "Prefix"
+          backend {
+            service {
+              name = "mckingapi-service"
               port {
                 number = 80
               }
