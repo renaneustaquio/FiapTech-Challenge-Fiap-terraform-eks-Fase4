@@ -140,3 +140,29 @@ variable "security_group_id" {
   description = "ID do security group"
   type        = any
 }
+
+variable "aws_access_key_id" {
+  type        = string
+  description = "AWS Access Key ID"
+}
+
+variable "aws_secret_access_key" {
+  type        = string
+  description = "AWS Secret Access Key"
+}
+
+variable "aws_session_token" {
+  type        = string
+  description = "AWS Session Token (opcional)"
+  default     = ""
+}
+
+variable "fila_pedidos_url" {
+  type        = string
+  description = "URL da fila de pedidos (SQS)"
+}
+
+variable "aws_cognito_user_pool_id" {
+  type        = string
+  description = "Cognito da sessão de acesso da AWS"
+}

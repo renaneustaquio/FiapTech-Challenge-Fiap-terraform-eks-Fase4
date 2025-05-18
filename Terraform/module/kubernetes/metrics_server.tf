@@ -1,3 +1,12 @@
+resource "null_resource" "helm_metrics_repo" {
+  provisioner "local-exec" {
+    command = <<EOT
+      helm repo add --force-update metrics-server https://kubernetes-sigs.github.io/metrics-server
+      helm repo update
+    EOT
+  }
+}
+
 resource "helm_release" "metrics_server" {
   name       = "metrics-server"
   namespace  = "kube-system"

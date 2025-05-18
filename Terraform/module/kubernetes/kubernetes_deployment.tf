@@ -1,6 +1,6 @@
 resource "kubernetes_deployment" "mckingapiproducao_deployment" {
   metadata {
-    name = var.deployment_name
+    name = "mckingapiproducao"
   }
 
   spec {
@@ -8,14 +8,14 @@ resource "kubernetes_deployment" "mckingapiproducao_deployment" {
 
     selector {
       match_labels = {
-        app = var.pod_name
+        app = "mckingapiproducao-pod"
       }
     }
 
     template {
       metadata {
         labels = {
-          app = var.pod_name
+          app = "mckingapiproducao-pod"
         }
       }
 
@@ -32,7 +32,30 @@ resource "kubernetes_deployment" "mckingapiproducao_deployment" {
           env {
             name  = "ASPNETCORE_ENVIRONMENT"
             value = "Production"
-          }        
+          }
+		  env {
+		    name  = "FilaPedidos__Url"
+		    value = var.fila_pedidos_url
+		  }
+          env {
+            name  = "AWS__AccessKeyId"
+            value = var.aws_access_key_id
+          }
+
+          env {
+            name  = "AWS__SecretAccessKey"
+            value = var.aws_secret_access_key
+          }
+
+          env {
+            name  = "AWS__SessionToken"
+            value = var.aws_session_token
+          }
+		  
+		  env {
+			name  = "AWS__Region"
+			value = "us-east-1"
+		  }
 
           resources {
             limits = {
@@ -50,10 +73,9 @@ resource "kubernetes_deployment" "mckingapiproducao_deployment" {
   }
 }
 
-
 resource "kubernetes_deployment" "mckingworkerproducao_deployment" {
   metadata {
-    name = var.deployment_name
+    name = "mckingworkerproducao"
   }
 
   spec {
@@ -61,14 +83,14 @@ resource "kubernetes_deployment" "mckingworkerproducao_deployment" {
 
     selector {
       match_labels = {
-        app = var.pod_name
+        app = "mckingworkerproducao-pod"
       }
     }
 
     template {
       metadata {
         labels = {
-          app = var.pod_name
+          app = "mckingworkerproducao-pod"
         }
       }
 
@@ -85,6 +107,31 @@ resource "kubernetes_deployment" "mckingworkerproducao_deployment" {
           env {
             name  = "ASPNETCORE_ENVIRONMENT"
             value = "Production"
+          }
+
+          env {
+            name  = "AWS__AccessKeyId"
+            value = var.aws_access_key_id
+          }
+
+          env {
+            name  = "AWS__SecretAccessKey"
+            value = var.aws_secret_access_key
+          }
+		  
+		  env {
+			name  = "AWS__Region"
+			value = "us-east-1"
+		  }		  
+		  
+		  env {
+		    name  = "FilaPedidos__Url"
+		    value = var.fila_pedidos_url
+		  }
+		  
+          env {
+            name  = "AWS__SessionToken"
+            value = var.aws_session_token
           }
 
           resources {
@@ -105,7 +152,7 @@ resource "kubernetes_deployment" "mckingworkerproducao_deployment" {
 
 resource "kubernetes_deployment" "mckingapi_deployment" {
   metadata {
-    name = var.deployment_name
+    name = "mckingapi"
   }
 
   spec {
@@ -113,14 +160,14 @@ resource "kubernetes_deployment" "mckingapi_deployment" {
 
     selector {
       match_labels = {
-        app = var.pod_name
+        app = "mckingapi-pod"
       }
     }
 
     template {
       metadata {
         labels = {
-          app = var.pod_name
+          app = "mckingapi-pod"
         }
       }
 
@@ -163,6 +210,36 @@ resource "kubernetes_deployment" "mckingapi_deployment" {
               }
             }
           }
+		  
+		  env {
+		    name  = "AWS__CognitoUserPoolId"
+		    value = var.aws_cognito_user_pool_id
+		  }		  
+		  
+          env {
+            name  = "AWS__AccessKeyId"
+            value = var.aws_access_key_id
+          }
+
+          env {
+            name  = "AWS__SecretAccessKey"
+            value = var.aws_secret_access_key
+          }
+		  
+          env {
+            name  = "AWS__SessionToken"
+            value = var.aws_session_token
+          }		  
+		  
+		  env {
+			name  = "AWS__Region"
+			value = "us-east-1"
+		  }		  
+		  
+		  env {
+		    name  = "FilaPedidos__Url"
+		    value = var.fila_pedidos_url
+		  }		  
 
           env {
             name = "MercadoPago__ClientId"
