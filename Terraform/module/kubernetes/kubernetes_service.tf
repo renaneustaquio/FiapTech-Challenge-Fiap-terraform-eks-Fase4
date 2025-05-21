@@ -59,3 +59,27 @@ resource "kubernetes_service" "mckingapi_service" {
     type = "LoadBalancer"
   }
 }
+
+resource "kubernetes_service" "mckingapipagamento_service" {
+  metadata {
+    name = "mckingapipagamento-service"
+    labels = {
+      run = "mckingapipagamento"
+    }
+  }
+
+  spec {
+    selector = {
+      app = "mckingapipagamento-pod"
+    }
+
+    port {
+      name        = "http"
+      port        = 80
+      target_port = 8080
+      protocol    = "TCP"
+    }
+
+    type = "LoadBalancer"
+  }
+}
