@@ -17,9 +17,9 @@ module "kubernetes" {
   mercado_pago_client_credentials = var.mercado_pago_client_credentials
   mercado_pago_access_token       = var.mercado_pago_access_token
   postgres_connection_string      = data.aws_secretsmanager_secret_version.aws_secretsmanager_secret_version_teste_4.secret_string
-  aws_access_key_id     = var.aws_access_key_id
-  aws_secret_access_key = var.aws_secret_access_key
-  aws_session_token     = var.aws_session_token
-  fila_pedidos_url      = var.fila_pedidos_url 
-  aws_cognito_user_pool_id = var.aws_cognito_user_pool_id
+  aws_access_key_id               = var.aws_access_key_id
+  aws_secret_access_key           = var.aws_secret_access_key
+  aws_session_token               = var.aws_session_token
+  fila_pedidos_url                = var.fila_pedidos_url
+  aws_cognito_user_pool_id        = var.aws_cognito_user_pool_id
 }

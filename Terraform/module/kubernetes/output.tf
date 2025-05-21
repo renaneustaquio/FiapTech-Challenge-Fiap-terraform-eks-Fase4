@@ -10,3 +10,6 @@ output "mckingapi_deployment_name" {
   value = kubernetes_deployment.mckingapi_deployment.metadata[0].name
 }
 
+output "mckingapipagamento_deployment_name" {
+  value = kubernetes_deployment.mckingapipagamento_deployment.metadata[0].name
+}
