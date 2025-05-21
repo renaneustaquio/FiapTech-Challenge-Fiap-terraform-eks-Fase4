@@ -4,7 +4,7 @@
 ### **Pipeline Status**
 [![Build](https://github.com/renaneustaquio/FiapTech-Challenge-Fiap-terraform-eks-Fase4/actions/workflows/build.yml/badge.svg)](https://github.com/renaneustaquio/FiapTech-Challenge-Fiap-terraform-eks-Fase4/actions/workflows/build.yml)
 
-[![Deploy](https://github.com/renaneustaquio/FiapTech-Challenge-Fiap-terraform-eks-Fase4/actions/workflows/deploy.yml/badge.svg)](https://github.com/renaneustaquio/FiapTech-Challenge-Fiap-terraform-eks-Fase4/actions/workflows/deploy.yml)
+[![Deploy](https://github.com/renaneustaquio/FiapTech-Challenge-Fiap-terraform-eks-Fase4/actions/workflows/deploy.yml/badge.svg?branch=master)](https://github.com/renaneustaquio/FiapTech-Challenge-Fiap-terraform-eks-Fase4/actions/workflows/deploy.yml)
 
 
 ## **Participantes**
