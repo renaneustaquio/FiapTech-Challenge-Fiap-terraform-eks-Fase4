@@ -81,3 +81,31 @@ resource "kubernetes_ingress_v1" "mckingapi_ingress" {
     }
   }
 }
+
+resource "kubernetes_ingress_v1" "mckingapipagamento_ingress" {
+  metadata {
+    name = "mckingapipagamento-ingress"
+    annotations = {
+      "nginx.ingress.kubernetes.io/rewrite-target" = "/"
+    }
+  }
+
+  spec {
+    rule {
+      http {
+        path {
+          path     = "/mckingapipagamento"
+          path_type = "Prefix"
+          backend {
+            service {
+              name = "mckingapipagamento-service"
+              port {
+                number = 80
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
