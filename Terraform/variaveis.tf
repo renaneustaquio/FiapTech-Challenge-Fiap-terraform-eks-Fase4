@@ -29,24 +29,29 @@ variable "mercado_pago_access_token" {
 variable "aws_access_key_id" {
   type        = string
   description = "ID de chave de acesso da AWS"
+  default     = ""  
 }
 
 variable "aws_secret_access_key" {
   type        = string
   description = "chave de acesso da AWS"
+  default     = ""
 }
 
 variable "aws_session_token" {
   type        = string
   description = "Token da sessão de acesso da AWS"
+  default     = ""  
 }
 
 variable "aws_cognito_user_pool_id" {
   type        = string
   description = "Cognito da sessão de acesso da AWS"
+  default     = ""
 }
 
 variable "fila_pedidos_url" {
   type        = string
   description = "URL da fila de pedidos (SQS)"
+  default     = ""
 }
